@@ -14,7 +14,8 @@ module Reposicion where
     alguno l m = if (filter (l) m) == [] then False else True
         
     toma :: (a -> Bool) -> [a] -> [a]
-    toma l = filter l 
+    toma l [] = []
+    toma l (x:xs) = if l x then x : toma l xs else []
     
     deja :: (a -> Bool) -> [a] -> [a]
     deja l = filter $ not . l
