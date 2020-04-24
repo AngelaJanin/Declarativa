@@ -12,13 +12,24 @@ module Reposicion where
     alguno :: Eq a => (a -> Bool) -> [a] -> Bool
     alguno _ [] = True
     alguno l m = if (filter (l) m) == [] then False else True
-        
-    toma :: (a -> Bool) -> [a] -> [a]
-    toma l [] = []
-    toma l (x:xs) = if l x then x : toma l xs else []
     
+    toma :: (a -> Bool) -> [a] -> [a]
+    toma l m = [y | (x,y) <- (comparaToma r)] 
+        where r = buildTuples (map (l) m) m   
+
     deja :: (a -> Bool) -> [a] -> [a]
-    deja l = filter $ not . l
+    deja l m = [y | (x,y) <- (comparaDeja r)] 
+        where r = buildTuples (map (l) m) m       
+
+    comparaToma :: [(Bool,a)] -> [(Bool,a)]       
+    comparaToma (x:xs) = if fst x == True then x : comparaToma xs else []
+
+    comparaDeja :: [(Bool,a)] -> [(Bool,a)]       
+    comparaDeja (x:xs) = if fst x == False then x : comparaDeja xs else []
+    
+    buildTuples :: [a] -> [b] -> [(a,b)]
+    buildTuples [] [] = []
+    buildTuples (x:xs) (y:ys) = (x,y) : buildTuples xs ys 
 
     -- Segundo ejercicio Tarea 2
     altMap :: (a -> b)-> (a -> b)-> [a] -> [b]
