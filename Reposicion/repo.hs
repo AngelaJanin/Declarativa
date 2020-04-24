@@ -10,11 +10,8 @@ module Reposicion where
 
     alguno :: Eq a => (a -> Bool) -> [a] -> Bool
     alguno _ [] = True
-    alguno l m 
-        | r == [] = False
-        | otherwise = True
-        where r = filter (l) m
-
+    alguno l m = if (filter (l) m) == [] then False else True
+        
     toma :: (a -> Bool) -> [a] -> [a]
     toma l = filter l 
     
