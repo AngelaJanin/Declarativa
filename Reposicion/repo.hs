@@ -5,12 +5,15 @@ module Reposicion where
 
     todos :: Eq a => (a -> Bool) -> [a] -> Bool
     todos _ [] = True
-    todos l m 
-        | r == [] = True
-        | otherwise = False
+    todos l m = if length (filter(l) m) == length m then True else False
+
+    alguno :: Eq a => (a -> Bool) -> [a] -> Bool
+    alguno _ [] = True
+    alguno l m 
+        | r == [] = False
+        | otherwise = True
         where r = filter (l) m
-    
-    --alguno :: Eq a => (a -> Bool) -> [a] -> Bool
+
 
 
 
