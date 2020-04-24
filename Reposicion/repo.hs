@@ -20,10 +20,11 @@ module Reposicion where
 
     altMap :: (a -> b)-> (a -> b)-> [a] -> [b]
     altMap m n [] = [] 
-    altMap m n [o] = [m o] 
+    altMap m n [o] = [m o]
+    altMap m n [o, p] = [m o, n p] 
     altMap m n (x:y:ys) = m x : n y : altMap m n ys
 
-    
+
 
 
 
