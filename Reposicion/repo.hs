@@ -16,17 +16,10 @@ module Reposicion where
         where r = filter (l) m
 
     toma :: (a -> Bool) -> [a] -> [a]
-    toma _ [] = []
-    toma l m = filter l m
-
+    toma l = filter l 
+    
     deja :: (a -> Bool) -> [a] -> [a]
-    deja _ [] = []
-    deja l m = notFilter l m 
-
-    --Función auxiliar para la función deja
-
-    notFilter :: (a -> Bool) -> [a] -> [a]
-    notFilter l = filter $ not . l
+    deja l = filter $ not . l
 
 
 
