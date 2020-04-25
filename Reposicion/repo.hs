@@ -1,3 +1,6 @@
+-- Integrantes del equipo:
+-- Ángeles Martínez Ángela Janín
+-- Rebollar Pérez Ailyn
 module Reposicion where
     import Data.List 
     import Data.Maybe
@@ -21,11 +24,12 @@ module Reposicion where
     deja l m = [y | (x,y) <- (comparaDeja r)] 
         where r = buildTuples (map (l) m) m       
 
+    -- Funciones auxiliares
     comparaToma :: [(Bool,a)] -> [(Bool,a)]       
     comparaToma (x:xs) = if fst x == True then x : comparaToma xs else []
 
     comparaDeja :: [(Bool,a)] -> [(Bool,a)]       
-    comparaDeja (x:xs) = if fst x == False then x : comparaDeja xs else []
+    comparaDeja (x:xs) = if fst x == True then comparaDeja xs  else  x : xs 
     
     buildTuples :: [a] -> [b] -> [(a,b)]
     buildTuples [] [] = []
