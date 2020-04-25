@@ -26,9 +26,11 @@ module Reposicion where
 
     -- Funciones auxiliares
     comparaToma :: [(Bool,a)] -> [(Bool,a)]       
+    comparaToma [] = []
     comparaToma (x:xs) = if fst x == True then x : comparaToma xs else []
 
-    comparaDeja :: [(Bool,a)] -> [(Bool,a)]       
+    comparaDeja :: [(Bool,a)] -> [(Bool,a)]   
+    comparaDeja [] = []    
     comparaDeja (x:xs) = if fst x == True then comparaDeja xs  else  x : xs 
     
     buildTuples :: [a] -> [b] -> [(a,b)]
@@ -46,6 +48,32 @@ module Reposicion where
     luhn :: [Int] -> Bool
     luhn m = if (r `mod` 10) == 0 then True else False
         where r = foldr (+) 0 [if (x > 9) then (x - 9) else x | x <- altMap (*2) (+0) m]
+
+    --TAREA 3 
+    --Primer ejercicio 
+
+    factorion :: Int -> Int 
+    factorion l = foldr (+) 0 $ map factorial $ num2list l
+
+    factorial :: Int -> Int
+    factorial 0 = 1
+    factorial n = n * factorial (n - 1)    
+
+    num2list :: Int -> [Int]
+    num2list m = map fromIntegral $ [toInteger (digitToInt x) | x <- show m]
+
+    --Segundo ejercicio 
+    iflip :: Int -> Int 
+    iflip l = list2Num $ foldl (\m x-> x : m) [] (num2list l)
+        
+    list2Num :: [Int] -> Int
+    list2Num = read . concatMap show
+
+    --Tercer ejercicio 
+    --binarios :: [Int] -> [Int]
+
+
+        
 
 
 
